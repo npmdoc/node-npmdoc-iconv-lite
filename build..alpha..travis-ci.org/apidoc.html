@@ -1,0 +1,1268 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/ashtuchkin/iconv-lite"
+
+    >iconv-lite (v0.4.15)</a>
+</h1>
+<h4>Convert character encodings in pure javascript.</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.iconv-lite">module iconv-lite</a><ol>
+
+        <li>
+
+            <span class="apidocSignatureSpan">boolean <span class="apidocSignatureSpan">iconv-lite.</span>supportsNodeEncodingsExtension</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">boolean <span class="apidocSignatureSpan">iconv-lite.</span>supportsStreams</span>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.iconv-lite.IconvLiteDecoderStream">
+            function <span class="apidocSignatureSpan">iconv-lite.</span>IconvLiteDecoderStream
+            <span class="apidocSignatureSpan">(conv, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.iconv-lite.IconvLiteEncoderStream">
+            function <span class="apidocSignatureSpan">iconv-lite.</span>IconvLiteEncoderStream
+            <span class="apidocSignatureSpan">(conv, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.iconv-lite._collect">
+            function <span class="apidocSignatureSpan">iconv-lite.</span>_collect
+            <span class="apidocSignatureSpan">(cb)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.iconv-lite.decode">
+            function <span class="apidocSignatureSpan">iconv-lite.</span>decode
+            <span class="apidocSignatureSpan">(buf, encoding, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.iconv-lite.decodeStream">
+            function <span class="apidocSignatureSpan">iconv-lite.</span>decodeStream
+            <span class="apidocSignatureSpan">(encoding, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.iconv-lite.encode">
+            function <span class="apidocSignatureSpan">iconv-lite.</span>encode
+            <span class="apidocSignatureSpan">(str, encoding, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.iconv-lite.encodeStream">
+            function <span class="apidocSignatureSpan">iconv-lite.</span>encodeStream
+            <span class="apidocSignatureSpan">(encoding, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.iconv-lite.encodingExists">
+            function <span class="apidocSignatureSpan">iconv-lite.</span>encodingExists
+            <span class="apidocSignatureSpan">(enc)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.iconv-lite.extendNodeEncodings">
+            function <span class="apidocSignatureSpan">iconv-lite.</span>extendNodeEncodings
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.iconv-lite.fromEncoding">
+            function <span class="apidocSignatureSpan">iconv-lite.</span>fromEncoding
+            <span class="apidocSignatureSpan">(buf, encoding, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.iconv-lite.getCodec">
+            function <span class="apidocSignatureSpan">iconv-lite.</span>getCodec
+            <span class="apidocSignatureSpan">(encoding)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.iconv-lite.getDecoder">
+            function <span class="apidocSignatureSpan">iconv-lite.</span>getDecoder
+            <span class="apidocSignatureSpan">(encoding, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.iconv-lite.getEncoder">
+            function <span class="apidocSignatureSpan">iconv-lite.</span>getEncoder
+            <span class="apidocSignatureSpan">(encoding, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.iconv-lite.toEncoding">
+            function <span class="apidocSignatureSpan">iconv-lite.</span>toEncoding
+            <span class="apidocSignatureSpan">(str, encoding, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.iconv-lite.undoExtendNodeEncodings">
+            function <span class="apidocSignatureSpan">iconv-lite.</span>undoExtendNodeEncodings
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">iconv-lite.</span>IconvLiteDecoderStream.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">iconv-lite.</span>IconvLiteEncoderStream.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">iconv-lite.</span>_codecDataCache</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">iconv-lite.</span>bom_handling</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">iconv-lite.</span>encodings</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">iconv-lite.</span>defaultCharSingleByte</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">iconv-lite.</span>defaultCharUnicode</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.iconv-lite.IconvLiteDecoderStream">module iconv-lite.IconvLiteDecoderStream</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.iconv-lite.IconvLiteDecoderStream.IconvLiteDecoderStream">
+            function <span class="apidocSignatureSpan">iconv-lite.</span>IconvLiteDecoderStream
+            <span class="apidocSignatureSpan">(conv, options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.iconv-lite.IconvLiteDecoderStream.prototype">module iconv-lite.IconvLiteDecoderStream.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.iconv-lite.IconvLiteDecoderStream.prototype._flush">
+            function <span class="apidocSignatureSpan">iconv-lite.IconvLiteDecoderStream.prototype.</span>_flush
+            <span class="apidocSignatureSpan">(done)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.iconv-lite.IconvLiteDecoderStream.prototype._transform">
+            function <span class="apidocSignatureSpan">iconv-lite.IconvLiteDecoderStream.prototype.</span>_transform
+            <span class="apidocSignatureSpan">(chunk, encoding, done)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.iconv-lite.IconvLiteDecoderStream.prototype.collect">
+            function <span class="apidocSignatureSpan">iconv-lite.IconvLiteDecoderStream.prototype.</span>collect
+            <span class="apidocSignatureSpan">(cb)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.iconv-lite.IconvLiteEncoderStream">module iconv-lite.IconvLiteEncoderStream</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.iconv-lite.IconvLiteEncoderStream.IconvLiteEncoderStream">
+            function <span class="apidocSignatureSpan">iconv-lite.</span>IconvLiteEncoderStream
+            <span class="apidocSignatureSpan">(conv, options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.iconv-lite.IconvLiteEncoderStream.prototype">module iconv-lite.IconvLiteEncoderStream.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.iconv-lite.IconvLiteEncoderStream.prototype._flush">
+            function <span class="apidocSignatureSpan">iconv-lite.IconvLiteEncoderStream.prototype.</span>_flush
+            <span class="apidocSignatureSpan">(done)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.iconv-lite.IconvLiteEncoderStream.prototype._transform">
+            function <span class="apidocSignatureSpan">iconv-lite.IconvLiteEncoderStream.prototype.</span>_transform
+            <span class="apidocSignatureSpan">(chunk, encoding, done)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.iconv-lite.IconvLiteEncoderStream.prototype.collect">
+            function <span class="apidocSignatureSpan">iconv-lite.IconvLiteEncoderStream.prototype.</span>collect
+            <span class="apidocSignatureSpan">(cb)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.iconv-lite.bom_handling">module iconv-lite.bom_handling</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.iconv-lite.bom_handling.PrependBOM">
+            function <span class="apidocSignatureSpan">iconv-lite.bom_handling.</span>PrependBOM
+            <span class="apidocSignatureSpan">(encoder, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.iconv-lite.bom_handling.StripBOM">
+            function <span class="apidocSignatureSpan">iconv-lite.bom_handling.</span>StripBOM
+            <span class="apidocSignatureSpan">(decoder, options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.iconv-lite" id="apidoc.module.iconv-lite">module iconv-lite</a></h1>
+
+
+
+
+
+
+    <h2>
+        <a href="#apidoc.element.iconv-lite.IconvLiteDecoderStream" id="apidoc.element.iconv-lite.IconvLiteDecoderStream">
+        function <span class="apidocSignatureSpan">iconv-lite.</span>IconvLiteDecoderStream
+        <span class="apidocSignatureSpan">(conv, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function IconvLiteDecoderStream(conv, options) {
+    this.conv = conv;
+    options = options || {};
+    options.encoding = this.encoding = &#x27;utf8&#x27;; // We output strings.
+    Transform.call(this, options);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.iconv-lite.IconvLiteEncoderStream" id="apidoc.element.iconv-lite.IconvLiteEncoderStream">
+        function <span class="apidocSignatureSpan">iconv-lite.</span>IconvLiteEncoderStream
+        <span class="apidocSignatureSpan">(conv, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function IconvLiteEncoderStream(conv, options) {
+    this.conv = conv;
+    options = options || {};
+    options.decodeStrings = false; // We accept only strings, so we don&#x27;t need to decode them.
+    Transform.call(this, options);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.iconv-lite._collect" id="apidoc.element.iconv-lite._collect">
+        function <span class="apidocSignatureSpan">iconv-lite.</span>_collect
+        <span class="apidocSignatureSpan">(cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_collect = function (cb) {
+    var res = &#x27;&#x27;;
+    this.on(&#x27;error&#x27;, cb);
+    this.on(&#x27;data&#x27;, function(chunk) { res += chunk; });
+    this.on(&#x27;end&#x27;, function() {
+        cb(null, res);
+    });
+    return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.iconv-lite.decode" id="apidoc.element.iconv-lite.decode">
+        function <span class="apidocSignatureSpan">iconv-lite.</span>decode
+        <span class="apidocSignatureSpan">(buf, encoding, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function decode(buf, encoding, options) {
+    if (typeof buf === &#x27;string&#x27;) {
+        if (!iconv.skipDecodeWarning) {
+            console.error(&#x27;Iconv-lite warning: decode()-ing strings is deprecated. Refer to https://github.com/ashtuchkin/iconv-
+lite/wiki/Use-Buffers-when-decoding&#x27;);
+            iconv.skipDecodeWarning = true;
+        }
+
+        buf = new Buffer(&#x22;&#x22; + (buf || &#x22;&#x22;), &#x22;binary&#x22;); // Ensure buffer.
+    }
+
+    var decoder = iconv.getDecoder(encoding, options);
+
+    var res = decoder.write(buf);
+    var trail = decoder.end();
+
+    return trail ? (res + trail) : res;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+## Usage
+### Basic API
+```javascript
+var iconv = require(&#x27;iconv-lite&#x27;);
+
+// Convert from an encoded buffer to js string.
+str = iconv.<span class="apidocCodeKeywordSpan">decode</span>(new Buffer([0x68, 0x65, 0x6c, 0x6c, 0x6f]), &#x27;win1251&#x27;);
+
+// Convert from js string to an encoded buffer.
+buf = iconv.encode(&#x22;Sample input string&#x22;, &#x27;win1251&#x27;);
+
+// Check if encoding is supported
+iconv.encodingExists(&#x22;us-ascii&#x22;)
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.iconv-lite.decodeStream" id="apidoc.element.iconv-lite.decodeStream">
+        function <span class="apidocSignatureSpan">iconv-lite.</span>decodeStream
+        <span class="apidocSignatureSpan">(encoding, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function decodeStream(encoding, options) {
+    return new IconvLiteDecoderStream(iconv.getDecoder(encoding, options), options);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+```
+
+### Streaming API (Node v0.10+)
+```javascript
+
+// Decode stream (from binary stream to js strings)
+http.createServer(function(req, res) {
+    var converterStream = iconv.<span class="apidocCodeKeywordSpan">decodeStream</span>(&#x27;win1251&#x27;);
+    req.pipe(converterStream);
+
+    converterStream.on(&#x27;data&#x27;, function(str) {
+        console.log(str); // Do something with decoded strings, chunk-by-chunk.
+    });
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.iconv-lite.encode" id="apidoc.element.iconv-lite.encode">
+        function <span class="apidocSignatureSpan">iconv-lite.</span>encode
+        <span class="apidocSignatureSpan">(str, encoding, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function encode(str, encoding, options) {
+    str = &#x22;&#x22; + (str || &#x22;&#x22;); // Ensure string.
+
+    var encoder = iconv.getEncoder(encoding, options);
+
+    var res = encoder.write(str);
+    var trail = encoder.end();
+
+    return (trail &#x26;&#x26; trail.length &#x3e; 0) ? Buffer.concat([res, trail]) : res;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+```javascript
+var iconv = require(&#x27;iconv-lite&#x27;);
+
+// Convert from an encoded buffer to js string.
+str = iconv.decode(new Buffer([0x68, 0x65, 0x6c, 0x6c, 0x6f]), &#x27;win1251&#x27;);
+
+// Convert from js string to an encoded buffer.
+buf = iconv.<span class="apidocCodeKeywordSpan">encode</span>(&#x22;Sample input string&#x22;, &#x27;win1251&#x27;);
+
+// Check if encoding is supported
+iconv.encodingExists(&#x22;us-ascii&#x22;)
+```
+
+### Streaming API (Node v0.10+)
+```javascript
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.iconv-lite.encodeStream" id="apidoc.element.iconv-lite.encodeStream">
+        function <span class="apidocSignatureSpan">iconv-lite.</span>encodeStream
+        <span class="apidocSignatureSpan">(encoding, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function encodeStream(encoding, options) {
+    return new IconvLiteEncoderStream(iconv.getEncoder(encoding, options), options);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    console.log(str); // Do something with decoded strings, chunk-by-chunk.
+});
+});
+
+// Convert encoding streaming example
+fs.createReadStream(&#x27;file-in-win1251.txt&#x27;)
+.pipe(iconv.decodeStream(&#x27;win1251&#x27;))
+.pipe(iconv.<span class="apidocCodeKeywordSpan">encodeStream</span>(&#x27;ucs2&#x27;))
+.pipe(fs.createWriteStream(&#x27;file-in-ucs2.txt&#x27;));
+
+// Sugar: all encode/decode streams have .collect(cb) method to accumulate data.
+http.createServer(function(req, res) {
+req.pipe(iconv.decodeStream(&#x27;win1251&#x27;)).collect(function(err, body) {
+    assert(typeof body == &#x27;string&#x27;);
+    console.log(body); // full request body string
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.iconv-lite.encodingExists" id="apidoc.element.iconv-lite.encodingExists">
+        function <span class="apidocSignatureSpan">iconv-lite.</span>encodingExists
+        <span class="apidocSignatureSpan">(enc)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function encodingExists(enc) {
+    try {
+        iconv.getCodec(enc);
+        return true;
+    } catch (e) {
+        return false;
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+// Convert from an encoded buffer to js string.
+str = iconv.decode(new Buffer([0x68, 0x65, 0x6c, 0x6c, 0x6f]), &#x27;win1251&#x27;);
+
+// Convert from js string to an encoded buffer.
+buf = iconv.encode(&#x22;Sample input string&#x22;, &#x27;win1251&#x27;);
+
+// Check if encoding is supported
+iconv.<span class="apidocCodeKeywordSpan">encodingExists</span>(&#x22;us-ascii&#x22;)
+```
+
+### Streaming API (Node v0.10+)
+```javascript
+
+// Decode stream (from binary stream to js strings)
+http.createServer(function(req, res) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.iconv-lite.extendNodeEncodings" id="apidoc.element.iconv-lite.extendNodeEncodings">
+        function <span class="apidocSignatureSpan">iconv-lite.</span>extendNodeEncodings
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function extendNodeEncodings() {
+    if (original) return;
+    original = {};
+
+    if (!iconv.supportsNodeEncodingsExtension) {
+        console.error(&#x22;ACTION NEEDED: require(&#x27;iconv-lite&#x27;).extendNodeEncodings() is not supported in your version of Node&#x22;);
+        console.error(&#x22;See more info at https://github.com/ashtuchkin/iconv-lite/wiki/Node-v4-compatibility&#x22;);
+        return;
+    }
+
+    var nodeNativeEncodings = {
+        &#x27;hex&#x27;: true, &#x27;utf8&#x27;: true, &#x27;utf-8&#x27;: true, &#x27;ascii&#x27;: true, &#x27;binary&#x27;: true,
+        &#x27;base64&#x27;: true, &#x27;ucs2&#x27;: true, &#x27;ucs-2&#x27;: true, &#x27;utf16le&#x27;: true, &#x27;utf-16le&#x27;: true,
+    };
+
+    Buffer.isNativeEncoding = function(enc) {
+        return enc &#x26;&#x26; nodeNativeEncodings[enc.toLowerCase()];
+    }
+
+    // -- SlowBuffer -----------------------------------------------------------
+    var SlowBuffer = require(&#x27;buffer&#x27;).SlowBuffer;
+
+    original.SlowBufferToString = SlowBuffer.prototype.toString;
+    SlowBuffer.prototype.toString = function(encoding, start, end) {
+        encoding = String(encoding || &#x27;utf8&#x27;).toLowerCase();
+
+        // Use native conversion when possible
+        if (Buffer.isNativeEncoding(encoding))
+            return original.SlowBufferToString.call(this, encoding, start, end);
+
+        // Otherwise, use our decoding method.
+        if (typeof start == &#x27;undefined&#x27;) start = 0;
+        if (typeof end == &#x27;undefined&#x27;) end = this.length;
+        return iconv.decode(this.slice(start, end), encoding);
+    }
+
+    original.SlowBufferWrite = SlowBuffer.prototype.write;
+    SlowBuffer.prototype.write = function(string, offset, length, encoding) {
+        // Support both (string, offset, length, encoding)
+        // and the legacy (string, encoding, offset, length)
+        if (isFinite(offset)) {
+            if (!isFinite(length)) {
+                encoding = length;
+                length = undefined;
+            }
+        } else {  // legacy
+            var swap = encoding;
+            encoding = offset;
+            offset = length;
+            length = swap;
+        }
+
+        offset = +offset || 0;
+        var remaining = this.length - offset;
+        if (!length) {
+            length = remaining;
+        } else {
+            length = +length;
+            if (length &#x3e; remaining) {
+                length = remaining;
+            }
+        }
+        encoding = String(encoding || &#x27;utf8&#x27;).toLowerCase();
+
+        // Use native conversion when possible
+        if (Buffer.isNativeEncoding(encoding))
+            return original.SlowBufferWrite.call(this, string, offset, length, encoding);
+
+        if (string.length &#x3e; 0 &#x26;&#x26; (length &#x3c; 0 || offset &#x3c; 0))
+            throw new RangeError(&#x27;attempt to write beyond buffer bounds&#x27;);
+
+        // Otherwise, use our encoding method.
+        var buf = iconv.encode(string, encoding);
+        if (buf.length &#x3c; length) length = buf.length;
+        buf.copy(this, offset, 0, length);
+        return length;
+    }
+
+    // -- Buffer ---------------------------------------------------------------
+
+    original.BufferIsEncoding = Buffer.isEncoding;
+    Buffer.isEncoding = function(encoding) {
+        return Buffer.isNativeEncoding(encoding) || iconv.encodingExists(encoding);
+    }
+
+    original.BufferByteLength = Buffer.byteLength;
+    Buffer.byteLength = SlowBuffer.byteLength = function(str, encoding) {
+        encoding = String(encoding || &#x27;utf8&#x27;).toLowerCase();
+
+        // Use native conversion when possible
+        if (Buffer.isNativeEncoding(encoding))
+            return original.BufferByteLength.call(this, str, encoding);
+
+        // Slow, I know, but we don&#x27;t have a better way yet.
+        return iconv.encode(str, encoding).length;
+    }
+
+    original.BufferToString = Buffer.prototype.toString;
+    Buffer.prototype.toString = function(encoding, start, end) {
+        encoding = String(encoding || &#x27;utf8&#x27;).toLowerCase();
+
+        // Use native conversion when possible
+        if (Buffer.isNativeEncoding(encoding))
+            return original.BufferToString.call(this, encoding, start, end);
+
+        // Otherwise, use our decoding method.
+        if (typeof start == &#x27;undefined&#x27;) start = 0; ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+```
+
+### [Deprecated] Extend Node.js own encodings
+&#x3e; NOTE: This doesn&#x27;t work on latest Node versions. See [details](https://github.com/ashtuchkin/iconv-lite/wiki/Node-v4
+-compatibility).
+
+```javascript
+// After this call all Node basic primitives will understand iconv-lite encodings.
+iconv.<span class="apidocCodeKeywordSpan">extendNodeEncodings</span>();
+
+// Examples:
+buf = new Buffer(str, &#x27;win1251&#x27;);
+buf.write(str, &#x27;gbk&#x27;);
+str = buf.toString(&#x27;latin1&#x27;);
+assert(Buffer.isEncoding(&#x27;iso-8859-15&#x27;));
+Buffer.byteLength(str, &#x27;us-ascii&#x27;);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.iconv-lite.fromEncoding" id="apidoc.element.iconv-lite.fromEncoding">
+        function <span class="apidocSignatureSpan">iconv-lite.</span>fromEncoding
+        <span class="apidocSignatureSpan">(buf, encoding, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function decode(buf, encoding, options) {
+    if (typeof buf === &#x27;string&#x27;) {
+        if (!iconv.skipDecodeWarning) {
+            console.error(&#x27;Iconv-lite warning: decode()-ing strings is deprecated. Refer to https://github.com/ashtuchkin/iconv-
+lite/wiki/Use-Buffers-when-decoding&#x27;);
+            iconv.skipDecodeWarning = true;
+        }
+
+        buf = new Buffer(&#x22;&#x22; + (buf || &#x22;&#x22;), &#x22;binary&#x22;); // Ensure buffer.
+    }
+
+    var decoder = iconv.getDecoder(encoding, options);
+
+    var res = decoder.write(buf);
+    var trail = decoder.end();
+
+    return trail ? (res + trail) : res;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.iconv-lite.getCodec" id="apidoc.element.iconv-lite.getCodec">
+        function <span class="apidocSignatureSpan">iconv-lite.</span>getCodec
+        <span class="apidocSignatureSpan">(encoding)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function getCodec(encoding) {
+    if (!iconv.encodings)
+        iconv.encodings = require(&#x22;../encodings&#x22;); // Lazy load all encoding definitions.
+
+    // Canonicalize encoding name: strip all non-alphanumeric chars and appended year.
+    var enc = (&#x27;&#x27;+encoding).toLowerCase().replace(/[^0-9a-z]|:\d{4}$/g, &#x22;&#x22;);
+
+    // Traverse iconv.encodings to find actual codec.
+    var codecOptions = {};
+    while (true) {
+        var codec = iconv._codecDataCache[enc];
+        if (codec)
+            return codec;
+
+        var codecDef = iconv.encodings[enc];
+
+        switch (typeof codecDef) {
+            case &#x22;string&#x22;: // Direct alias to other encoding.
+                enc = codecDef;
+                break;
+
+            case &#x22;object&#x22;: // Alias with options. Can be layered.
+                for (var key in codecDef)
+                    codecOptions[key] = codecDef[key];
+
+                if (!codecOptions.encodingName)
+                    codecOptions.encodingName = enc;
+
+                enc = codecDef.type;
+                break;
+
+            case &#x22;function&#x22;: // Codec itself.
+                if (!codecOptions.encodingName)
+                    codecOptions.encodingName = enc;
+
+                // The codec function must load all tables and return object with .encoder and .decoder methods.
+                // It&#x27;ll be called only once (for each different options object).
+                codec = new codecDef(codecOptions, iconv);
+
+                iconv._codecDataCache[codecOptions.encodingName] = codec; // Save it to be reused later.
+                return codec;
+
+            default:
+                throw new Error(&#x22;Encoding not recognized: &#x27;&#x22; + encoding + &#x22;&#x27; (searched as: &#x27;&#x22;+enc+&#x22;&#x27;)&#x22;);
+        }
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.iconv-lite.getDecoder" id="apidoc.element.iconv-lite.getDecoder">
+        function <span class="apidocSignatureSpan">iconv-lite.</span>getDecoder
+        <span class="apidocSignatureSpan">(encoding, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function getDecoder(encoding, options) {
+    var codec = iconv.getCodec(encoding),
+        decoder = new codec.decoder(options, codec);
+
+    if (codec.bomAware &#x26;&#x26; !(options &#x26;&#x26; options.stripBOM === false))
+        decoder = new bomHandling.StripBOM(decoder, options);
+
+    return decoder;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    if (iconv.supportsStreams) {
+        var Readable = require(&#x27;stream&#x27;).Readable;
+
+        original.ReadableSetEncoding = Readable.prototype.setEncoding;
+        Readable.prototype.setEncoding = function setEncoding(enc, options) {
+            // Use our own decoder, it has the same interface.
+            // We cannot use original function as it doesn&#x27;t handle BOM-s.
+            this._readableState.decoder = iconv.<span class="apidocCodeKeywordSpan">getDecoder</span>(enc, options);
+            this._readableState.encoding = enc;
+        }
+
+        Readable.prototype.collect = iconv._collect;
+    }
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.iconv-lite.getEncoder" id="apidoc.element.iconv-lite.getEncoder">
+        function <span class="apidocSignatureSpan">iconv-lite.</span>getEncoder
+        <span class="apidocSignatureSpan">(encoding, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function getEncoder(encoding, options) {
+    var codec = iconv.getCodec(encoding),
+        encoder = new codec.encoder(options, codec);
+
+    if (codec.bomAware &#x26;&#x26; options &#x26;&#x26; options.addBOM)
+        encoder = new bomHandling.PrependBOM(encoder, options);
+
+    return encoder;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+
+// == Exports ==================================================================
+module.exports = function(iconv) {
+
+// Additional Public API.
+iconv.encodeStream = function encodeStream(encoding, options) {
+    return new IconvLiteEncoderStream(iconv.<span class="apidocCodeKeywordSpan">getEncoder</span>(encoding, options), options);
+}
+
+iconv.decodeStream = function decodeStream(encoding, options) {
+    return new IconvLiteDecoderStream(iconv.getDecoder(encoding, options), options);
+}
+
+iconv.supportsStreams = true;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.iconv-lite.toEncoding" id="apidoc.element.iconv-lite.toEncoding">
+        function <span class="apidocSignatureSpan">iconv-lite.</span>toEncoding
+        <span class="apidocSignatureSpan">(str, encoding, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function encode(str, encoding, options) {
+    str = &#x22;&#x22; + (str || &#x22;&#x22;); // Ensure string.
+
+    var encoder = iconv.getEncoder(encoding, options);
+
+    var res = encoder.write(str);
+    var trail = encoder.end();
+
+    return (trail &#x26;&#x26; trail.length &#x3e; 0) ? Buffer.concat([res, trail]) : res;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.iconv-lite.undoExtendNodeEncodings" id="apidoc.element.iconv-lite.undoExtendNodeEncodings">
+        function <span class="apidocSignatureSpan">iconv-lite.</span>undoExtendNodeEncodings
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function undoExtendNodeEncodings() {
+    if (!iconv.supportsNodeEncodingsExtension)
+        return;
+    if (!original)
+        throw new Error(&#x22;require(&#x27;iconv-lite&#x27;).undoExtendNodeEncodings(): Nothing to undo; extendNodeEncodings() is not called.&#x22;)
+
+    delete Buffer.isNativeEncoding;
+
+    var SlowBuffer = require(&#x27;buffer&#x27;).SlowBuffer;
+
+    SlowBuffer.prototype.toString = original.SlowBufferToString;
+    SlowBuffer.prototype.write = original.SlowBufferWrite;
+
+    Buffer.isEncoding = original.BufferIsEncoding;
+    Buffer.byteLength = original.BufferByteLength;
+    Buffer.prototype.toString = original.BufferToString;
+    Buffer.prototype.write = original.BufferWrite;
+
+    if (iconv.supportsStreams) {
+        var Readable = require(&#x27;stream&#x27;).Readable;
+
+        Readable.prototype.setEncoding = original.ReadableSetEncoding;
+        delete Readable.prototype.collect;
+    }
+
+    original = undefined;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+request = require(&#x27;request&#x27;);
+request({
+   url: &#x22;http://github.com/&#x22;,
+   encoding: &#x22;cp932&#x22;
+});
+
+// To remove extensions
+iconv.<span class="apidocCodeKeywordSpan">undoExtendNodeEncodings</span>();
+```
+
+## Supported encodings
+
+*  All node.js native encodings: utf8, ucs2 / utf16-le, ascii, binary, base64, hex.
+*  Additional unicode encodings: utf16, utf16-be, utf-7, utf-7-imap.
+*  All widespread singlebyte encodings: Windows 125x family, ISO-8859 family,
+...</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.iconv-lite.IconvLiteDecoderStream" id="apidoc.module.iconv-lite.IconvLiteDecoderStream">module iconv-lite.IconvLiteDecoderStream</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.iconv-lite.IconvLiteDecoderStream.IconvLiteDecoderStream" id="apidoc.element.iconv-lite.IconvLiteDecoderStream.IconvLiteDecoderStream">
+        function <span class="apidocSignatureSpan">iconv-lite.</span>IconvLiteDecoderStream
+        <span class="apidocSignatureSpan">(conv, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function IconvLiteDecoderStream(conv, options) {
+    this.conv = conv;
+    options = options || {};
+    options.encoding = this.encoding = &#x27;utf8&#x27;; // We output strings.
+    Transform.call(this, options);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.iconv-lite.IconvLiteDecoderStream.prototype" id="apidoc.module.iconv-lite.IconvLiteDecoderStream.prototype">module iconv-lite.IconvLiteDecoderStream.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.iconv-lite.IconvLiteDecoderStream.prototype._flush" id="apidoc.element.iconv-lite.IconvLiteDecoderStream.prototype._flush">
+        function <span class="apidocSignatureSpan">iconv-lite.IconvLiteDecoderStream.prototype.</span>_flush
+        <span class="apidocSignatureSpan">(done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_flush = function (done) {
+    try {
+        var res = this.conv.end();
+        if (res &#x26;&#x26; res.length) this.push(res, this.encoding);
+        done();
+    }
+    catch (e) {
+        done(e);
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.iconv-lite.IconvLiteDecoderStream.prototype._transform" id="apidoc.element.iconv-lite.IconvLiteDecoderStream.prototype._transform">
+        function <span class="apidocSignatureSpan">iconv-lite.IconvLiteDecoderStream.prototype.</span>_transform
+        <span class="apidocSignatureSpan">(chunk, encoding, done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_transform = function (chunk, encoding, done) {
+    if (!Buffer.isBuffer(chunk))
+        return done(new Error(&#x22;Iconv decoding stream needs buffers as its input.&#x22;));
+    try {
+        var res = this.conv.write(chunk);
+        if (res &#x26;&#x26; res.length) this.push(res, this.encoding);
+        done();
+    }
+    catch (e) {
+        done(e);
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.iconv-lite.IconvLiteDecoderStream.prototype.collect" id="apidoc.element.iconv-lite.IconvLiteDecoderStream.prototype.collect">
+        function <span class="apidocSignatureSpan">iconv-lite.IconvLiteDecoderStream.prototype.</span>collect
+        <span class="apidocSignatureSpan">(cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">collect = function (cb) {
+    var res = &#x27;&#x27;;
+    this.on(&#x27;error&#x27;, cb);
+    this.on(&#x27;data&#x27;, function(chunk) { res += chunk; });
+    this.on(&#x27;end&#x27;, function() {
+        cb(null, res);
+    });
+    return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+// Convert encoding streaming example
+fs.createReadStream(&#x27;file-in-win1251.txt&#x27;)
+    .pipe(iconv.decodeStream(&#x27;win1251&#x27;))
+    .pipe(iconv.encodeStream(&#x27;ucs2&#x27;))
+    .pipe(fs.createWriteStream(&#x27;file-in-ucs2.txt&#x27;));
+
+// Sugar: all encode/decode streams have .<span class="apidocCodeKeywordSpan">collect</span>(cb) method to accumulate data.
+http.createServer(function(req, res) {
+    req.pipe(iconv.decodeStream(&#x27;win1251&#x27;)).collect(function(err, body) {
+        assert(typeof body == &#x27;string&#x27;);
+        console.log(body); // full request body string
+    });
+});
+```
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.iconv-lite.IconvLiteEncoderStream" id="apidoc.module.iconv-lite.IconvLiteEncoderStream">module iconv-lite.IconvLiteEncoderStream</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.iconv-lite.IconvLiteEncoderStream.IconvLiteEncoderStream" id="apidoc.element.iconv-lite.IconvLiteEncoderStream.IconvLiteEncoderStream">
+        function <span class="apidocSignatureSpan">iconv-lite.</span>IconvLiteEncoderStream
+        <span class="apidocSignatureSpan">(conv, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function IconvLiteEncoderStream(conv, options) {
+    this.conv = conv;
+    options = options || {};
+    options.decodeStrings = false; // We accept only strings, so we don&#x27;t need to decode them.
+    Transform.call(this, options);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.iconv-lite.IconvLiteEncoderStream.prototype" id="apidoc.module.iconv-lite.IconvLiteEncoderStream.prototype">module iconv-lite.IconvLiteEncoderStream.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.iconv-lite.IconvLiteEncoderStream.prototype._flush" id="apidoc.element.iconv-lite.IconvLiteEncoderStream.prototype._flush">
+        function <span class="apidocSignatureSpan">iconv-lite.IconvLiteEncoderStream.prototype.</span>_flush
+        <span class="apidocSignatureSpan">(done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_flush = function (done) {
+    try {
+        var res = this.conv.end();
+        if (res &#x26;&#x26; res.length) this.push(res);
+        done();
+    }
+    catch (e) {
+        done(e);
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.iconv-lite.IconvLiteEncoderStream.prototype._transform" id="apidoc.element.iconv-lite.IconvLiteEncoderStream.prototype._transform">
+        function <span class="apidocSignatureSpan">iconv-lite.IconvLiteEncoderStream.prototype.</span>_transform
+        <span class="apidocSignatureSpan">(chunk, encoding, done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_transform = function (chunk, encoding, done) {
+    if (typeof chunk != &#x27;string&#x27;)
+        return done(new Error(&#x22;Iconv encoding stream needs strings as its input.&#x22;));
+    try {
+        var res = this.conv.write(chunk);
+        if (res &#x26;&#x26; res.length) this.push(res);
+        done();
+    }
+    catch (e) {
+        done(e);
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.iconv-lite.IconvLiteEncoderStream.prototype.collect" id="apidoc.element.iconv-lite.IconvLiteEncoderStream.prototype.collect">
+        function <span class="apidocSignatureSpan">iconv-lite.IconvLiteEncoderStream.prototype.</span>collect
+        <span class="apidocSignatureSpan">(cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">collect = function (cb) {
+    var chunks = [];
+    this.on(&#x27;error&#x27;, cb);
+    this.on(&#x27;data&#x27;, function(chunk) { chunks.push(chunk); });
+    this.on(&#x27;end&#x27;, function() {
+        cb(null, Buffer.concat(chunks));
+    });
+    return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+// Convert encoding streaming example
+fs.createReadStream(&#x27;file-in-win1251.txt&#x27;)
+    .pipe(iconv.decodeStream(&#x27;win1251&#x27;))
+    .pipe(iconv.encodeStream(&#x27;ucs2&#x27;))
+    .pipe(fs.createWriteStream(&#x27;file-in-ucs2.txt&#x27;));
+
+// Sugar: all encode/decode streams have .<span class="apidocCodeKeywordSpan">collect</span>(cb) method to accumulate data.
+http.createServer(function(req, res) {
+    req.pipe(iconv.decodeStream(&#x27;win1251&#x27;)).collect(function(err, body) {
+        assert(typeof body == &#x27;string&#x27;);
+        console.log(body); // full request body string
+    });
+});
+```
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.iconv-lite.bom_handling" id="apidoc.module.iconv-lite.bom_handling">module iconv-lite.bom_handling</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.iconv-lite.bom_handling.PrependBOM" id="apidoc.element.iconv-lite.bom_handling.PrependBOM">
+        function <span class="apidocSignatureSpan">iconv-lite.bom_handling.</span>PrependBOM
+        <span class="apidocSignatureSpan">(encoder, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function PrependBOMWrapper(encoder, options) {
+    this.encoder = encoder;
+    this.addBOM = true;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.iconv-lite.bom_handling.StripBOM" id="apidoc.element.iconv-lite.bom_handling.StripBOM">
+        function <span class="apidocSignatureSpan">iconv-lite.bom_handling.</span>StripBOM
+        <span class="apidocSignatureSpan">(decoder, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function StripBOMWrapper(decoder, options) {
+    this.decoder = decoder;
+    this.pass = false;
+    this.options = options || {};
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
