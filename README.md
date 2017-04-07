@@ -3,9 +3,11 @@
 
 [![NPM](https://nodei.co/npm/iconv-lite.png?downloads=true)](https://www.npmjs.com/package/iconv-lite)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-iconv-lite/build/screen-capture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-iconv-lite_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-iconv-lite/build..beta..travis-ci.org/apidoc.html)
+[![apidoc](https://npmdoc.github.io/node-npmdoc-iconv-lite/build/screenCapture.buildNpmdoc.browser.%2Fhome%2Ftravis%2Fbuild%2Fnpmdoc%2Fnode-npmdoc-iconv-lite%2Ftmp%2Fbuild%2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-iconv-lite/build/apidoc.html)
 
-![package-listing](https://npmdoc.github.io/node-npmdoc-iconv-lite/build/screen-capture.npmPackageListing.svg)
+![npmPackageListing](https://npmdoc.github.io/node-npmdoc-iconv-lite/build/screenCapture.npmPackageListing.svg)
+
+![npmPackageDependencyTree](https://npmdoc.github.io/node-npmdoc-iconv-lite/build/screenCapture.npmPackageDependencyTree.svg)
 
 
 
@@ -153,7 +155,12 @@
 1.  object <span class="apidocSignatureSpan">iconv-lite.</span>IconvLiteEncoderStream.prototype
 1.  object <span class="apidocSignatureSpan">iconv-lite.</span>_codecDataCache
 1.  object <span class="apidocSignatureSpan">iconv-lite.</span>bom_handling
+1.  object <span class="apidocSignatureSpan">iconv-lite.</span>dbcs_codec
 1.  object <span class="apidocSignatureSpan">iconv-lite.</span>encodings
+1.  object <span class="apidocSignatureSpan">iconv-lite.</span>internal
+1.  object <span class="apidocSignatureSpan">iconv-lite.</span>sbcs_codec
+1.  object <span class="apidocSignatureSpan">iconv-lite.</span>utf16
+1.  object <span class="apidocSignatureSpan">iconv-lite.</span>utf7
 1.  string <span class="apidocSignatureSpan">iconv-lite.</span>defaultCharSingleByte
 1.  string <span class="apidocSignatureSpan">iconv-lite.</span>defaultCharUnicode
 
@@ -176,6 +183,32 @@
 #### [module iconv-lite.bom_handling](#apidoc.module.iconv-lite.bom_handling)
 1.  [function <span class="apidocSignatureSpan">iconv-lite.bom_handling.</span>PrependBOM (encoder, options)](#apidoc.element.iconv-lite.bom_handling.PrependBOM)
 1.  [function <span class="apidocSignatureSpan">iconv-lite.bom_handling.</span>StripBOM (decoder, options)](#apidoc.element.iconv-lite.bom_handling.StripBOM)
+
+#### [module iconv-lite.dbcs_codec](#apidoc.module.iconv-lite.dbcs_codec)
+1.  [function <span class="apidocSignatureSpan">iconv-lite.dbcs_codec.</span>_dbcs (codecOptions, iconv)](#apidoc.element.iconv-lite.dbcs_codec._dbcs)
+
+#### [module iconv-lite.internal](#apidoc.module.iconv-lite.internal)
+1.  [function <span class="apidocSignatureSpan">iconv-lite.internal.</span>_internal (codecOptions, iconv)](#apidoc.element.iconv-lite.internal._internal)
+1.  object <span class="apidocSignatureSpan">iconv-lite.internal.</span>base64
+1.  object <span class="apidocSignatureSpan">iconv-lite.internal.</span>binary
+1.  object <span class="apidocSignatureSpan">iconv-lite.internal.</span>cesu8
+1.  object <span class="apidocSignatureSpan">iconv-lite.internal.</span>hex
+1.  object <span class="apidocSignatureSpan">iconv-lite.internal.</span>ucs2
+1.  object <span class="apidocSignatureSpan">iconv-lite.internal.</span>utf8
+1.  string <span class="apidocSignatureSpan">iconv-lite.internal.</span>unicode11utf8
+1.  string <span class="apidocSignatureSpan">iconv-lite.internal.</span>utf16le
+
+#### [module iconv-lite.sbcs_codec](#apidoc.module.iconv-lite.sbcs_codec)
+1.  [function <span class="apidocSignatureSpan">iconv-lite.sbcs_codec.</span>_sbcs (codecOptions, iconv)](#apidoc.element.iconv-lite.sbcs_codec._sbcs)
+
+#### [module iconv-lite.utf16](#apidoc.module.iconv-lite.utf16)
+1.  [function <span class="apidocSignatureSpan">iconv-lite.</span>utf16 (codecOptions, iconv)](#apidoc.element.iconv-lite.utf16.utf16)
+1.  [function <span class="apidocSignatureSpan">iconv-lite.utf16.</span>utf16be ()](#apidoc.element.iconv-lite.utf16.utf16be)
+
+#### [module iconv-lite.utf7](#apidoc.module.iconv-lite.utf7)
+1.  [function <span class="apidocSignatureSpan">iconv-lite.</span>utf7 (codecOptions, iconv)](#apidoc.element.iconv-lite.utf7.utf7)
+1.  [function <span class="apidocSignatureSpan">iconv-lite.utf7.</span>utf7imap (codecOptions, iconv)](#apidoc.element.iconv-lite.utf7.utf7imap)
+1.  string <span class="apidocSignatureSpan">iconv-lite.utf7.</span>unicode11utf7
 
 
 
@@ -627,20 +660,21 @@ function getDecoder(encoding, options) {
 - example usage
 ```shell
 ...
-    if (iconv.supportsStreams) {
-        var Readable = require('stream').Readable;
 
-        original.ReadableSetEncoding = Readable.prototype.setEncoding;
-        Readable.prototype.setEncoding = function setEncoding(enc, options) {
-            // Use our own decoder, it has the same interface.
-            // We cannot use original function as it doesn't handle BOM-s.
-            this._readableState.decoder = iconv.getDecoder(enc, options);
-            this._readableState.encoding = enc;
-        }
+        if (this.initialBytesLen < 16) // We need more bytes to use space heuristic (see below)
+            return '';
 
-        Readable.prototype.collect = iconv._collect;
+        // We have enough bytes -> detect endianness.
+        var buf = Buffer.concat(this.initialBytes),
+            encoding = detectEncoding(buf, this.options.defaultEncoding);
+        this.decoder = this.iconv.getDecoder(encoding, this.options);
+        this.initialBytes.length = this.initialBytesLen = 0;
     }
+
+    return this.decoder.write(buf);
 }
+
+Utf16Decoder.prototype.end = function() {
 ...
 ```
 
@@ -661,20 +695,20 @@ function getEncoder(encoding, options) {
 ```shell
 ...
 
+// -- Encoding (pass-through)
 
-// == Exports ==================================================================
-module.exports = function(iconv) {
-
-// Additional Public API.
-iconv.encodeStream = function encodeStream(encoding, options) {
-    return new IconvLiteEncoderStream(iconv.getEncoder(encoding, options), options);
+function Utf16Encoder(options, codec) {
+    options = options || {};
+    if (options.addBOM === undefined)
+        options.addBOM = true;
+    this.encoder = codec.iconv.getEncoder('utf-16le', options);
 }
 
-iconv.decodeStream = function decodeStream(encoding, options) {
-    return new IconvLiteDecoderStream(iconv.getDecoder(encoding, options), options);
+Utf16Encoder.prototype.write = function(str) {
+    return this.encoder.write(str);
 }
 
-iconv.supportsStreams = true;
+Utf16Encoder.prototype.end = function() {
 ...
 ```
 
@@ -967,6 +1001,228 @@ function StripBOMWrapper(decoder, options) {
     this.decoder = decoder;
     this.pass = false;
     this.options = options || {};
+}
+```
+- example usage
+```shell
+n/a
+```
+
+
+
+# <a name="apidoc.module.iconv-lite.dbcs_codec"></a>[module iconv-lite.dbcs_codec](#apidoc.module.iconv-lite.dbcs_codec)
+
+#### <a name="apidoc.element.iconv-lite.dbcs_codec._dbcs"></a>[function <span class="apidocSignatureSpan">iconv-lite.dbcs_codec.</span>_dbcs (codecOptions, iconv)](#apidoc.element.iconv-lite.dbcs_codec._dbcs)
+- description and source-code
+```javascript
+function DBCSCodec(codecOptions, iconv) {
+    this.encodingName = codecOptions.encodingName;
+    if (!codecOptions)
+        throw new Error("DBCS codec is called without the data.")
+    if (!codecOptions.table)
+        throw new Error("Encoding '" + this.encodingName + "' has no data.");
+
+    // Load tables.
+    var mappingTable = codecOptions.table();
+
+
+    // Decode tables: MBCS -> Unicode.
+
+    // decodeTables is a trie, encoded as an array of arrays of integers. Internal arrays are trie nodes and all have len = 256.
+    // Trie root is decodeTables[0].
+    // Values: >=  0 -> unicode character code. can be > 0xFFFF
+    //         == UNASSIGNED -> unknown/unassigned sequence.
+    //         == GB18030_CODE -> this is the end of a GB18030 4-byte sequence.
+    //         <= NODE_START -> index of the next node in our trie to process next byte.
+    //         <= SEQ_START  -> index of the start of a character code sequence, in decodeTableSeq.
+    this.decodeTables = [];
+    this.decodeTables[0] = UNASSIGNED_NODE.slice(0); // Create root node.
+
+    // Sometimes a MBCS char corresponds to a sequence of unicode chars. We store them as arrays of integers here.
+    this.decodeTableSeq = [];
+
+    // Actual mapping tables consist of chunks. Use them to fill up decode tables.
+    for (var i = 0; i < mappingTable.length; i++)
+        this._addDecodeChunk(mappingTable[i]);
+
+    this.defaultCharUnicode = iconv.defaultCharUnicode;
+
+
+    // Encode tables: Unicode -> DBCS.
+
+    // 'encodeTable' is array mapping from unicode char to encoded char. All its values are integers for performance.
+    // Because it can be sparse, it is represented as array of buckets by 256 chars each. Bucket can be null.
+    // Values: >=  0 -> it is a normal char. Write the value (if <=256 then 1 byte, if <=65536 then 2 bytes, etc.).
+    //         == UNASSIGNED -> no conversion found. Output a default char.
+    //         <= SEQ_START  -> it's an index in encodeTableSeq, see below. The character starts a sequence.
+    this.encodeTable = [];
+
+    // 'encodeTableSeq' is used when a sequence of unicode characters is encoded as a single code. We use a tree of
+    // objects where keys correspond to characters in sequence and leafs are the encoded dbcs values. A special DEF_CHAR key
+    // means end of sequence (needed when one sequence is a strict subsequence of another).
+    // Objects are kept separately from encodeTable to increase performance.
+    this.encodeTableSeq = [];
+
+    // Some chars can be decoded, but need not be encoded.
+    var skipEncodeChars = {};
+    if (codecOptions.encodeSkipVals)
+        for (var i = 0; i < codecOptions.encodeSkipVals.length; i++) {
+            var val = codecOptions.encodeSkipVals[i];
+            if (typeof val === 'number')
+                skipEncodeChars[val] = true;
+            else
+                for (var j = val.from; j <= val.to; j++)
+                    skipEncodeChars[j] = true;
+        }
+
+    // Use decode trie to recursively fill out encode tables.
+    this._fillEncodeTable(0, 0, skipEncodeChars);
+
+    // Add more encoding pairs when needed.
+    if (codecOptions.encodeAdd) {
+        for (var uChar in codecOptions.encodeAdd)
+            if (Object.prototype.hasOwnProperty.call(codecOptions.encodeAdd, uChar))
+                this._setEncodeChar(uChar.charCodeAt(0), codecOptions.encodeAdd[uChar]);
+    }
+
+    this.defCharSB  = this.encodeTable[0][iconv.defaultCharSingleByte.charCodeAt(0)];
+    if (this.defCharSB === UNASSIGNED) this.defCharSB = this.encodeTable[0]['?'];
+    if (this.defCharSB === UNASSIGNED) this.defCharSB = "?".charCodeAt(0);
+
+
+    // Load & create GB18030 tables when needed.
+    if (typeof codecOptions.gb18030 === 'function') {
+        this.gb18030 = codecOptions.gb18030(); // Load GB18030 ranges.
+
+        // Add GB18030 decode tables.
+        var thirdByteNodeIdx = this.decodeTables.length;
+        var thirdByteNode = this.decodeTables[thirdByteNodeIdx] = UNASSIGNED_NODE.slice(0);
+
+        var fourthByteNodeIdx = this.decodeTables.length;
+        var fourthByteNode = this.decod ...
+```
+- example usage
+```shell
+n/a
+```
+
+
+
+# <a name="apidoc.module.iconv-lite.internal"></a>[module iconv-lite.internal](#apidoc.module.iconv-lite.internal)
+
+#### <a name="apidoc.element.iconv-lite.internal._internal"></a>[function <span class="apidocSignatureSpan">iconv-lite.internal.</span>_internal (codecOptions, iconv)](#apidoc.element.iconv-lite.internal._internal)
+- description and source-code
+```javascript
+function InternalCodec(codecOptions, iconv) {
+    this.enc = codecOptions.encodingName;
+    this.bomAware = codecOptions.bomAware;
+
+    if (this.enc === "base64")
+        this.encoder = InternalEncoderBase64;
+    else if (this.enc === "cesu8") {
+        this.enc = "utf8"; // Use utf8 for decoding.
+        this.encoder = InternalEncoderCesu8;
+
+        // Add decoder for versions of Node not supporting CESU-8
+        if (new Buffer("eda080", 'hex').toString().length == 3) {
+            this.decoder = InternalDecoderCesu8;
+            this.defaultCharUnicode = iconv.defaultCharUnicode;
+        }
+    }
+}
+```
+- example usage
+```shell
+n/a
+```
+
+
+
+# <a name="apidoc.module.iconv-lite.sbcs_codec"></a>[module iconv-lite.sbcs_codec](#apidoc.module.iconv-lite.sbcs_codec)
+
+#### <a name="apidoc.element.iconv-lite.sbcs_codec._sbcs"></a>[function <span class="apidocSignatureSpan">iconv-lite.sbcs_codec.</span>_sbcs (codecOptions, iconv)](#apidoc.element.iconv-lite.sbcs_codec._sbcs)
+- description and source-code
+```javascript
+function SBCSCodec(codecOptions, iconv) {
+    if (!codecOptions)
+        throw new Error("SBCS codec is called without the data.")
+
+    // Prepare char buffer for decoding.
+    if (!codecOptions.chars || (codecOptions.chars.length !== 128 && codecOptions.chars.length !== 256))
+        throw new Error("Encoding '"+codecOptions.type+"' has incorrect 'chars' (must be of len 128 or 256)");
+
+    if (codecOptions.chars.length === 128) {
+        var asciiString = "";
+        for (var i = 0; i < 128; i++)
+            asciiString += String.fromCharCode(i);
+        codecOptions.chars = asciiString + codecOptions.chars;
+    }
+
+    this.decodeBuf = new Buffer(codecOptions.chars, 'ucs2');
+
+    // Encoding buffer.
+    var encodeBuf = new Buffer(65536);
+    encodeBuf.fill(iconv.defaultCharSingleByte.charCodeAt(0));
+
+    for (var i = 0; i < codecOptions.chars.length; i++)
+        encodeBuf[codecOptions.chars.charCodeAt(i)] = i;
+
+    this.encodeBuf = encodeBuf;
+}
+```
+- example usage
+```shell
+n/a
+```
+
+
+
+# <a name="apidoc.module.iconv-lite.utf16"></a>[module iconv-lite.utf16](#apidoc.module.iconv-lite.utf16)
+
+#### <a name="apidoc.element.iconv-lite.utf16.utf16"></a>[function <span class="apidocSignatureSpan">iconv-lite.</span>utf16 (codecOptions, iconv)](#apidoc.element.iconv-lite.utf16.utf16)
+- description and source-code
+```javascript
+function Utf16Codec(codecOptions, iconv) {
+    this.iconv = iconv;
+}
+```
+- example usage
+```shell
+n/a
+```
+
+#### <a name="apidoc.element.iconv-lite.utf16.utf16be"></a>[function <span class="apidocSignatureSpan">iconv-lite.utf16.</span>utf16be ()](#apidoc.element.iconv-lite.utf16.utf16be)
+- description and source-code
+```javascript
+function Utf16BECodec() {
+}
+```
+- example usage
+```shell
+n/a
+```
+
+
+
+# <a name="apidoc.module.iconv-lite.utf7"></a>[module iconv-lite.utf7](#apidoc.module.iconv-lite.utf7)
+
+#### <a name="apidoc.element.iconv-lite.utf7.utf7"></a>[function <span class="apidocSignatureSpan">iconv-lite.</span>utf7 (codecOptions, iconv)](#apidoc.element.iconv-lite.utf7.utf7)
+- description and source-code
+```javascript
+function Utf7Codec(codecOptions, iconv) {
+    this.iconv = iconv;
+}
+```
+- example usage
+```shell
+n/a
+```
+
+#### <a name="apidoc.element.iconv-lite.utf7.utf7imap"></a>[function <span class="apidocSignatureSpan">iconv-lite.utf7.</span>utf7imap (codecOptions, iconv)](#apidoc.element.iconv-lite.utf7.utf7imap)
+- description and source-code
+```javascript
+function Utf7IMAPCodec(codecOptions, iconv) {
+    this.iconv = iconv;
 }
 ```
 - example usage
